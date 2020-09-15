@@ -1,0 +1,48 @@
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useState } from "react";
+import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import * as Permissions from "expo-permissions";
+
+function selectimage(props) {
+  const [imageUri, setImageUri] = useState();
+  const requestPermission = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    if (status !== "granted") {
+      alert("Sorry, we need camera roll permissions to make this work!");
+    }
+    const result = await Imagepicker.requestCameraPermissionsAsync();
+    if (!result.granted) {
+      alert("Sorry, First Add Permission");
+    }
+  };
+  useEffect(() => {
+    requestPermission();
+  }, []);
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync();
+      if (result.cancelled === true) {
+        setImageUri(result.uri);
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+  return (
+    <SafeAreaView styles={styles.container}>
+      <Button title="Select Image" onPress={selectImage} />
+      <image source={{ uri: imageUri }} styles={{ width: 200, height: 200 }} />
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+export default selectimage;
