@@ -19,7 +19,6 @@ export default class fingertprint extends Component {
   };
 
   componentDidMount() {
-    alert("oookkk");
     this.checkDeviceForHardware();
     this.checkForFingerprints();
   }
