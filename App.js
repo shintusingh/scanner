@@ -23,6 +23,7 @@ export default function App() {
         secure other greater pleasures, or else he endures pains to avoid worse
         pains
       </Text>
+      <fingertprint></fingertprint>
     </SafeAreaView>
   );
 }
