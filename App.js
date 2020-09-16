@@ -7,6 +7,7 @@ export default function App() {
   return (
     <SafeAreaView styles={styles.container}>
       <Text>Test sdffffffffff</Text>
+      <fingertprint></fingertprint>
     </SafeAreaView>
   );
 }
